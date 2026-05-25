@@ -54,9 +54,10 @@ with tab1:
     # Pastikan file 'best.pt' ada di folder yang sama dengan file app.py ini
     @st.cache_resource 
     def load_model():
-        if not os.path.exists("best.pt"):
-            gdown.download("https://drive.google.com/drive/my-drive?hl=ID/view?usp=sharing", "best.pt", quiet=False, fuzzy=True)                
-        model = YOLO("best.pt")
+        model_path = hf_hub_download(
+            repo_id="https://huggingface.co/NewbieFinalBosss/SAVIS/tree/main",
+            filename="best.pt")
+        model = YOLO(model_path)
         return model
     
     
