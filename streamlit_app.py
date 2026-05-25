@@ -55,7 +55,7 @@ with tab1:
     @st.cache_resource 
     def load_model():
         if not os.path.exists("best.pt"):
-            gdown.download("https://drive.google.com/drive/my-drive?hl=ID", "best.pt", quiet=False, fuzzy=True)                
+            gdown.download("https://drive.google.com/drive/my-drive?hl=ID/view?usp=sharing", "best.pt", quiet=False, fuzzy=True)                
         model = YOLO("best.pt")
         return model
     
