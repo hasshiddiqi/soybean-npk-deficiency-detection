@@ -55,7 +55,7 @@ with tab1:
     @st.cache_resource 
     def load_model():
         model_path = hf_hub_download(
-            repo_id="https://huggingface.co/NewbieFinalBosss/SAVIS/tree/main",
+            repo_id="https://huggingface.co/NewbieFinalBosss/SAVIS",
             filename="best.pt")
         model = YOLO(model_path)
         return model
