@@ -153,16 +153,19 @@ with tab3:
     st.write("")
 
     st.subheader("Metrik Performa Validasi")
-    df = pd.DataFrame({
-    "Kelas": ["Hara Tercukupi", "Defisiensi N", "Defisiensi P", "Defisiensi K", "Semua"],
-    "Citra": [43, 43, 43, 51, 198],
-    "Anotasi": [185, 203, 155, 210, 753],
-    "Precision": [0.994, 0.974, 0.999, 0.991, 0.989],
-    "Recall": [0.976, 0.913, 1.000, 0.994, 0.971],
-    "mAP50": [0.994, 0.986, 0.995, 0.995, 0.993],
-    "mAP50-95": [0.983, 0.971, 0.994, 0.991, 0.985],
-})
-
+    st.write(
+        df = pd.DataFrame(
+            {
+                "Kelas": ["Hara Tercukupi", "Defisiensi N", "Defisiensi P", "Defisiensi K", "Semua"],
+                "Citra": [43, 43, 43, 51, 198],
+                "Anotasi": [185, 203, 155, 210, 753],
+                "Precision": [0.994, 0.974, 0.999, 0.991, 0.989],
+                "Recall": [0.976, 0.913, 1.000, 0.994, 0.971],
+                "mAP50": [0.994, 0.986, 0.995, 0.995, 0.993],
+                "mAP50-95": [0.983, 0.971, 0.994, 0.991, 0.985],
+            }
+        )
+    )
 
 
 
