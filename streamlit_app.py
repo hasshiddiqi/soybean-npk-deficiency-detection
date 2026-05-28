@@ -103,7 +103,7 @@ with tab1:
 with tab2:
     st.header("Karakteristik Visual Daun Hara Tercukupi", divider="blue")
     st.write("Daun yang tercukupi haranya menampilkan warna hijau merata tanpa perubahan warna abnormal")
-    st.image("Hara Tercukupi.JPG", width="stretch")
+    st.image("Assets/Hara Tercukupi.JPG", width="stretch")
     st.write("")
     st.write("")
     st.write("")
