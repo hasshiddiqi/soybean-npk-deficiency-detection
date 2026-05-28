@@ -166,6 +166,27 @@ with tab3:
             }
         )
     )
+    st.write("")
+    st.write("")
+
+    st.subheader("Kurva Precision-Recall")
+    st.image("Assets/BoxPR_curve.png", width="stretch")
+    st.write("")
+    st.write("")
+
+    st.subheader("Kurva Skor F1")
+    st.image("Assets/BoxF1_curve.png", width="stretch")
+    st.write("")
+    st.write("")
+
+    st.subheader("Confusion Matrix")
+    st.write("Non-normalized")
+    st.image("Assets/confusion_matrix.jpg", width="stretch")
+    st.write("")
+    st.write("Normalized")
+    st.image("Assets/confusion_matrix_normalized.jpg", width="stretch")
+            
+    
 
 
 
