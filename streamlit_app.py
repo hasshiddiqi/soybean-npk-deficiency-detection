@@ -123,7 +123,7 @@ with tab2:
 
     st.header("Karakteristik Visual Daun Defisiensi Kalium", divider="blue")
     st.write("Defisiensi kalium menyebabkan klorosis antarvena yang dimulai pada daun tua, sementara vena utama tetap berwarna hijau untuk sementara. Klorosis kemudian berlanjut ke arah pangkal daun dan diikuti munculnya nekrosis di bagian tepi daun (Yara Canada, 2018).")
-    st.image("Assets/Defisiensi K.JPG", width="stretch")
+    st.image("Assets/Defisiensi K.jpg", width="stretch")
     st.write("")
     st.write("")
     st.write("")
