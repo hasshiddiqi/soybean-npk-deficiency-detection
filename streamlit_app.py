@@ -132,7 +132,35 @@ with tab2:
     st.write("Marschner, P. (2012). Marschner's Mineral Nutrition of Higher Plants (Third Edition). Academic Press. DOI:10.1016/C2009-0-63043-9")
     st.write("Yara Canada. (2018). Nutrient Deficiencies in Soybean. Diakeses 17 Mei 2026, dari https://www.yaracanada.ca/crop-nutrition/soybean/nutrient-deficiencies/")
 with tab3:
-    st.header("Tentang Model")
+    st.header("Tentang Model", divider="blue")
+    st.subheader("Arsitektur dan Konfigurasi")
+    st.write("Arsitektur: YOLOv8m")
+    st.write("Versi Ultralytics: 8.4.24")
+    st.write("Versi PyTorch: 2.12.0+cu132")
+    st.write("Perangkat: GPU Laptop NVIDIA® GeForce RTX™ 5070")
+    st.write("CUDA: 13.2")
+    st.write("cuDNN: 9.20.0.48 ")
+    st.write("hiperparameter: imgsz=896, batch=8, epochs=100 (early stopping pada epoch 79), patience=20")
+    st.write("")
+    st.write("")
+    
+    st.subheader("Dataset")
+    st.write("Kelas: Hara Tercukupi, Defisiensi N, Defisiensi P, dan Defisiensi K")
+    st.write("Citra digital tiap kelas: 300")
+    st.write("Rasio train/val/test: 70:15:15")
+    st.write("")
+    st.write("")
+
+    st.subheader("Metrik Performa Validasi")
+    df = pd.DataFrame({
+    "Kelas": ["Hara Tercukupi", "Defisiensi N", "Defisiensi P", "Defisiensi K", "Semua"],
+    "Citra": [43, 43, 43, 51, 198],
+    "Anotasi": [185, 203, 155, 210, 753],
+    "Precision": [0.994, 0.974, 0.999, 0.991, 0.989],
+    "Recall": [0.976, 0.913, 1.000, 0.994, 0.971],
+    "mAP50": [0.994, 0.986, 0.995, 0.995, 0.993],
+    "mAP50-95": [0.983, 0.971, 0.994, 0.991, 0.985],
+})
 
 
 
