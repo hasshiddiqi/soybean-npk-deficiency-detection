@@ -181,10 +181,10 @@ with tab3:
 
     st.subheader("Confusion Matrix")
     st.write("Non-normalized")
-    st.image("Assets/confusion_matrix.jpg", width="stretch")
+    st.image("Assets/confusion_matrix.png", width="stretch")
     st.write("")
     st.write("Normalized")
-    st.image("Assets/confusion_matrix_normalized.jpg", width="stretch")
+    st.image("Assets/confusion_matrix_normalized.png", width="stretch")
             
     
 
