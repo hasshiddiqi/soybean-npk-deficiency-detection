@@ -8,7 +8,6 @@ import os
 
 st.set_page_config(
     page_title="SMART AGRICULTURE VISION SYSTEM",
-    page_icon="Assets/page icon SAVIS.png",
     layout="wide",
     initial_sidebar_state=None,
 )
