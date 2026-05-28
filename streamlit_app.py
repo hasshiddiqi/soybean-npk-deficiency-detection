@@ -2,6 +2,7 @@ import streamlit as st
 from ultralytics import YOLO
 from PIL import Image
 import numpy as np
+import pandas as pd
 
 from huggingface_hub import hf_hub_download
 import os
