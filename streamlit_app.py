@@ -154,7 +154,7 @@ with tab3:
 
     st.subheader("Metrik Performa Validasi")
     st.write(
-        df = pd.DataFrame(
+        pd.DataFrame(
             {
                 "Kelas": ["Hara Tercukupi", "Defisiensi N", "Defisiensi P", "Defisiensi K", "Semua"],
                 "Citra": [43, 43, 43, 51, 198],
