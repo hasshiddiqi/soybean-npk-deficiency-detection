@@ -4,5 +4,5 @@ torch==2.12.0
 torchvision==0.27.0
 pillow==12.2.0
 numpy==2.2.6
-opencv-python-headless==4.13.0.92
+opencv-python-headless==4.8.1.78
 huggingface_hub
