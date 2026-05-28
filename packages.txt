@@ -1,4 +1,4 @@
-#libglib2.0-0
-#libglib2.0-data
-#shared-mime-info
-#xdg-user-dirs
+freeglut3-dev
+libgtk2.0-dev
+libgl1-mesa-glx
+libglib2.0-0
