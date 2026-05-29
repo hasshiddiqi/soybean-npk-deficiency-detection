@@ -56,7 +56,7 @@ with tab1:
     def load_model():
         model_path = hf_hub_download(
             repo_id="NewbieFinalBosss/SAVIS",
-            filename="best.pt")
+            filename="best.onnx")
         model = YOLO(model_path)
         return model
     
@@ -65,7 +65,7 @@ with tab1:
            
     if image_source is not None:
         # Konversi file ke format gambar PIL
-        image = Image.open(image_source).convert("RGB")
+        image = Image.open(image_source) #.convert("RGB")
                 # Buat dua kolom untuk membandingkan Original vs Hasil
         col1, col2 = st.columns(2)
         #Buat slide ambang kepercayaan
