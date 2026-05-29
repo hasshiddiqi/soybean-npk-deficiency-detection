@@ -81,7 +81,7 @@ with tab1:
             with st.spinner('Sedang mendeteksi...'):
                 # Convert PIL image ke format yang dimengerti YOLO (numpy array)
                 img_array = np.array(image)
-                results = model.predict(source=img_array, conf=conf_threshold)
+                results = model.predict(source=img_array, conf=conf_threshold, imgsz=896)
                 # Ambil gambar hasil plot (bounding boxes)
                 # results[0].plot() mengembalikan array gambar dengan kotak deteksi
                 res_plotted = results[0].plot()
