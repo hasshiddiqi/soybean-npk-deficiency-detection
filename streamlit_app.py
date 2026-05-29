@@ -66,7 +66,7 @@ with tab1:
     if image_source is not None:
         # Konversi file ke format gambar PIL
         image = Image.open(image_source).convert("RGB")
-                # Buat dua kolom untuk membandingkan Original vs Hasil
+                        # Buat dua kolom untuk membandingkan Original vs Hasil
         col1, col2 = st.columns(2)
         #Buat slide ambang kepercayaan
         conf_threshold = st.slider("Ambang kepercayaan", 0.0, 1.0, 0.838)
@@ -81,6 +81,7 @@ with tab1:
             with st.spinner('Sedang mendeteksi...'):
                 # Convert PIL image ke format yang dimengerti YOLO (numpy array)
                 img_array = np.array(image)
+                img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)  # konversi ke BGR
                 results = model.predict(source=img_array, conf=conf_threshold, imgsz=896)
                 # Ambil gambar hasil plot (bounding boxes)
                 # results[0].plot() mengembalikan array gambar dengan kotak deteksi
