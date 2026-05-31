@@ -1,5 +1,5 @@
 import streamlit as st
-import onnxruntime as ort
+from ultralytics import YOLO
 from PIL import Image
 import numpy as np
 import pandas as pd
@@ -58,7 +58,7 @@ with tab1:
         model_path = hf_hub_download(
             repo_id="NewbieFinalBosss/SAVIS",
             filename="best.onnx")
-        model = ort.InferenceSession(model_path)
+        model = YOLO(model_path)
         return model
     
     
@@ -189,7 +189,6 @@ with tab3:
     st.image("Assets/confusion_matrix_normalized.png", width="stretch")
             
     
-
 
 
 
