@@ -112,7 +112,7 @@ with tab2:
 
     st.header("Karakteristik Visual Daun Defisiensi Nitrogen", divider="blue")
     st.write("Defisiensi nitrogen menyebabkan tanaman tumbuh kerdil dengan daun yang sempit. Gejala klorosis dimulai dari daun tua karena nitrogen diremobilisasi ke daun muda untuk pertumbuhan. Secara visual, tanaman tampak hijau pucat atau kuning (Marschner, 2012).")
-    st.image("Assets/Defisiensi N.jpg", width="stretch")
+    st.image("Assets/Defisiensi N.jpg", width=250)
     st.write("")
     st.write("")
     st.write("")
