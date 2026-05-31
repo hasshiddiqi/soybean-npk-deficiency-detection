@@ -83,7 +83,7 @@ with tab1:
                 # Convert PIL image ke format yang dimengerti YOLO (numpy array)
                 img_array = np.array(image)
                 img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)  # konversi ke BGR
-                results = model.predict(source=img_array, conf=conf_threshold, imgsz=896)
+                results = model.predict(source=img_array, conf=conf_threshold, imgsz=896, task='detect')
                 # Ambil gambar hasil plot (bounding boxes)
                 # results[0].plot() mengembalikan array gambar dengan kotak deteksi
                 res_plotted = results[0].plot()
