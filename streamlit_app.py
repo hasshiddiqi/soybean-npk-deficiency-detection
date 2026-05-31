@@ -99,9 +99,6 @@ with tab1:
                 label = model.names[class_id]
                 prob = float(box.conf[0])
                 st.write(f"- Menemukan **{label}** dengan tingkat keyakinan **{prob:.2f}**")
-
-                path_model = hf_hub_download(repo_id="...", filename="best.onnx")
-                st.write(f"Model tersimpan di: {path_model}")
         else:
             st.write("Tidak ada objek yang terdeteksi.")
 
