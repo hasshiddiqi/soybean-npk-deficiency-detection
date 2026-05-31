@@ -1,5 +1,5 @@
 import streamlit as st
-from ultralytics import YOLO
+import onnxruntime as ort
 from PIL import Image
 import numpy as np
 import pandas as pd
@@ -58,7 +58,7 @@ with tab1:
         model_path = hf_hub_download(
             repo_id="NewbieFinalBosss/SAVIS",
             filename="best.onnx")
-        model = YOLO(model_path)
+        model = ort.InferenceSession(model_path)
         return model
     
     
