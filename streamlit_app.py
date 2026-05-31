@@ -86,7 +86,7 @@ with tab1:
                 results = model.predict(source=img_array, conf=conf_threshold, imgsz=896, task='detect')
                 # Ambil gambar hasil plot (bounding boxes)
                 # results[0].plot() mengembalikan array gambar dengan kotak deteksi
-                res_plotted = results[0]
+                res_plotted = results[0].plot()
                 # Tampilkan hasil
                 st.image(res_plotted, channels="BGR", use_container_width=True)
 
