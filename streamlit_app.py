@@ -105,28 +105,28 @@ with tab1:
 with tab2:
     st.header("Karakteristik Visual Daun Hara Tercukupi", divider="blue")
     st.write("Daun yang tercukupi haranya menampilkan warna hijau merata tanpa perubahan warna abnormal")
-    st.image("Assets/Hara Tercukupi.jpg", width=500)
+    st.image("Assets/Hara Tercukupi.jpg", width=600)
     st.write("")
     st.write("")
     st.write("")
 
     st.header("Karakteristik Visual Daun Defisiensi Nitrogen", divider="blue")
     st.write("Defisiensi nitrogen menyebabkan tanaman tumbuh kerdil dengan daun yang sempit. Gejala klorosis dimulai dari daun tua karena nitrogen diremobilisasi ke daun muda untuk pertumbuhan. Secara visual, tanaman tampak hijau pucat atau kuning (Marschner, 2012).")
-    st.image("Assets/Defisiensi N.jpg", width=250)
+    st.image("Assets/Defisiensi N.jpg", width=600)
     st.write("")
     st.write("")
     st.write("")
 
     st.header("Karakteristik Visual Daun Defisiensi Fosfor", divider="blue")
     st.write("Defisiensi fosfor menghambat pertumbuhan tanaman sehingga daun yang tumbuh relatif sedikit. Gejala visual dimulai dari daun tua, berupa klorosis antartulang daun dan nekrosis yang berkembang menyatu di sepanjang tepi daun (Yara Canada, 2018).")
-    st.image("Assets/Defisiensi P.jpg", width="stretch")
+    st.image("Assets/Defisiensi P.jpg", width=600)
     st.write("")
     st.write("")
     st.write("")
 
     st.header("Karakteristik Visual Daun Defisiensi Kalium", divider="blue")
     st.write("Defisiensi kalium menyebabkan klorosis antarvena yang dimulai pada daun tua, sementara vena utama tetap berwarna hijau untuk sementara. Klorosis kemudian berlanjut ke arah pangkal daun dan diikuti munculnya nekrosis di bagian tepi daun (Yara Canada, 2018).")
-    st.image("Assets/Defisiensi K.jpg", width="stretch")
+    st.image("Assets/Defisiensi K.jpg", width=600)
     st.write("")
     st.write("")
     st.write("")
@@ -172,21 +172,21 @@ with tab3:
     st.write("")
 
     st.subheader("Kurva Precision-Recall")
-    st.image("Assets/BoxPR_curve.png", width="stretch")
+    st.image("Assets/BoxPR_curve.png", width=600)
     st.write("")
     st.write("")
 
     st.subheader("Kurva Skor F1")
-    st.image("Assets/BoxF1_curve.png", width="stretch")
+    st.image("Assets/BoxF1_curve.png", width=600)
     st.write("")
     st.write("")
 
     st.subheader("Confusion Matrix")
     st.write("Non-normalized")
-    st.image("Assets/confusion_matrix.png", width="stretch")
+    st.image("Assets/confusion_matrix.png", width=600)
     st.write("")
     st.write("Normalized")
-    st.image("Assets/confusion_matrix_normalized.png", width="stretch")
+    st.image("Assets/confusion_matrix_normalized.png", width=600)
             
     
 
