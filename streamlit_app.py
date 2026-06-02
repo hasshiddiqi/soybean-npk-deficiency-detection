@@ -74,7 +74,7 @@ with tab1:
 
         with col1:
             st.subheader("Gambar Asli")
-            st.image(image, width=True)
+            st.image(image, use_container_width=True)
 
         with col2:
             st.subheader("Hasil Deteksi")
@@ -88,7 +88,7 @@ with tab1:
                 # results[0].plot() mengembalikan array gambar dengan kotak deteksi
                 res_plotted = results[0].plot()
                 # Tampilkan hasil
-                st.image(res_plotted, channels="BGR", width=True)
+                st.image(res_plotted, channels="BGR", use_container_width=True)
 
             #Tampilkan Informasi Tambahan
         st.divider()
