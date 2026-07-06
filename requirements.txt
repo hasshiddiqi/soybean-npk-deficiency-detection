@@ -1,9 +1,9 @@
 ultralytics==8.3.0
 streamlit==1.57.0
-opencv-python-headless==4.8.0.74
+opencv-python-headless==4.8.1.78
 
 pillow>=10.0.0
-numpy>=1.26.0
+numpy<=2.0.0
 pandas>=2.1.0
 
 huggingface_hub
