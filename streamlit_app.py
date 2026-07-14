@@ -1,3 +1,6 @@
+import os
+os.environ["HF_TOKEN"] ="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"
+
 import streamlit as st
 from ultralytics import YOLO
 from PIL import Image
@@ -6,8 +9,7 @@ import pandas as pd
 import cv2
 
 from huggingface_hub import hf_hub_download
-import os
-os.environ["HF_TOKEN"] ="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"
+
 
 st.set_page_config(
     page_title="SMART AGRICULTURE VISION SYSTEM",
