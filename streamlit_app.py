@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import cv2
 
-from huggingface_hub import hf_hub_download
+#from huggingface_hub import hf_hub_download
 import os
 
 st.set_page_config(
@@ -15,6 +15,8 @@ st.set_page_config(
 )
 
 st.title("SMART AGRICULTURE VISION SYSTEM")
+
+
 
 st.markdown("""
 <style>
@@ -50,16 +52,28 @@ div[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] {
 div[data-testid="stTabs"] div[data-baseweb="tab-highlight"] {
     display: none;
 }
+
             
 </style>
 """, unsafe_allow_html=True)
 
 
+st.markdown("""
+### 🌱 Apa itu SAVIS?
+SAVIS membantu Anda memeriksa kesehatan daun kedelai hanya dengan foto.
+
+**Cara pakai:**
+1. 📷 Ambil atau unggah foto daun kedelai yang jelas
+2. 🔍 Sistem akan otomatis memeriksa tanda kekurangan unsur hara
+3. 💡 Anda akan mendapat penjelasan dan saran pupuk yang sesuai
+
+Tidak perlu keahlian khusus — cukup foto, dan SAVIS membantu Anda memahami kondisi tanaman.
+""")
+st.divider()
+
+
 tab1, tab2, tab3 = st.tabs(["Prediksi", "Karakteristik Visual Defisiensi", "Tentang Model"])
 with tab1:
-    st.header("Unggah foto daun tanaman")
-    st.write("Ambil foto daun yang jelas, hindari bayangan dan blur")
-
     #Kotak unggah foto
     st.markdown("""
     <style>
@@ -94,9 +108,7 @@ with tab1:
     # Pastikan file 'best.pt' ada di folder yang sama dengan file app.py ini
     @st.cache_resource 
     def load_model():
-        model_path = hf_hub_download(
-            repo_id="NewbieFinalBosss/SAVIS",
-            filename="best.onnx")
+        model_path = r"C:\Users\Pongo\Documents\Kuliah\Tugas Akhir\Streamlit\best.onnx"  # file di folder yang sama dengan streamlit_app.py
         model = YOLO(model_path)
         return model
     
@@ -106,7 +118,7 @@ with tab1:
     if image_source is not None:
         # Konversi file ke format gambar PIL
         image = Image.open(image_source).convert("RGB")
-                        # Buat dua kolom untuk membandingkan Original vs Hasil
+        # Buat dua kolom untuk membandingkan Original vs Hasil
         col1, col2 = st.columns(2)
         #Buat slide ambang kepercayaan
         conf_threshold = st.slider("Ambang kepercayaan", 0.0, 1.0, 0.838)
@@ -125,47 +137,96 @@ with tab1:
                 results = model.predict(source=img_array, conf=conf_threshold, imgsz=896, task='detect')
                 # Ambil gambar hasil plot (bounding boxes)
                 # results[0].plot() mengembalikan array gambar dengan kotak deteksi
+                label_translation = {
+                "Nutrient Sufficient": "Hara Tercukupi",
+                "N Deficiency": "Defisiensi N",
+                "P Deficiency": "Defisiensi P",
+                "K Deficiency": "Defisiensi K",
+                }
+                results[0].names = {
+                k: label_translation.get(v, v) for k, v in results[0].names.items()
+                }
                 res_plotted = results[0].plot()
                 # Tampilkan hasil
                 st.image(res_plotted, channels="BGR", use_container_width=True)
 
-            #Tampilkan Informasi Tambahan
+        #Tampilkan Informasi Tambahan
         st.divider()
-        st.subheader("Detail Deteksi")
+
+        info_map = {
+    "Nutrient Sufficient": {
+        "keterangan": "✅ Tanaman Anda memiliki hara yang tercukupi.",
+        "solusi": "Pertahankan pola pemupukan saat ini sesuai dosis anjuran setempat."
+    },
+    "N Deficiency": {
+        "keterangan": "⚠️ Tanaman Anda mengalami kekurangan unsur **Nitrogen (N)**.",
+        "solusi": "Gunakan pupuk mengandung Nitrogen seperti Urea atau ZA. Konsultasikan dosis dan waktu aplikasi yang tepat dengan penyuluh pertanian setempat, karena kebutuhan bisa berbeda tergantung kondisi lahan."
+    },
+    "P Deficiency": {
+        "keterangan": "⚠️ Tanaman Anda mengalami kekurangan unsur **Fosfor (P)**.",
+        "solusi": "Gunakan pupuk mengandung Fosfor seperti SP-36 atau TSP. Konsultasikan dosis dan waktu aplikasi yang tepat dengan penyuluh pertanian setempat, karena kebutuhan bisa berbeda tergantung kondisi lahan."
+    },
+    "K Deficiency": {
+        "keterangan": "⚠️ Tanaman Anda mengalami kekurangan unsur **Kalium (K)**.",
+        "solusi": "Gunakan pupuk mengandung Kalium seperti KCl atau ZK. Konsultasikan dosis dan waktu aplikasi yang tepat dengan penyuluh pertanian setempat, karena kebutuhan bisa berbeda tergantung kondisi lahan."
+    },
+}
+
         if len(results[0].boxes) > 0:
+            detected_classes = set()
+            for box in results[0].boxes:
+                class_id = int(box.cls[0])
+                detected_classes.add(model.names[class_id])
+
+            # Kalau ada defisiensi terdeteksi bersamaan dengan "Nutrient Sufficient",
+            # sembunyikan "Nutrient Sufficient" supaya tidak membingungkan petani
+            deficiency_classes = {"N Deficiency", "P Deficiency", "K Deficiency"}
+            if detected_classes & deficiency_classes:
+                detected_classes.discard("Nutrient Sufficient")
+
+            st.subheader("Hasil Pemeriksaan")
+            for label in detected_classes:
+                info = info_map.get(label)
+                if info:
+                    st.warning(info["keterangan"])
+                    st.write(f"💡 **Solusi:** {info['solusi']}")
+                    st.write("")
+
+            st.divider()
+            st.subheader("Detail Deteksi")
             for box in results[0].boxes:
                 class_id = int(box.cls[0])
                 label = model.names[class_id]
                 prob = float(box.conf[0])
-                st.write(f"- Menemukan **{label}** dengan tingkat keyakinan **{prob:.2f}**")
-        else:
-            st.write("Tidak ada objek yang terdeteksi.")
+                st.write(f"- Menemukan daun **{label_translation.get(label, label)}** dengan tingkat keyakinan **{prob:.2f}**")
+            else:
+                st.write("Tidak ada objek yang terdeteksi.")
 
 with tab2:
     st.header("Karakteristik Visual Daun Hara Tercukupi", divider="blue")
     st.write("Daun yang tercukupi haranya menampilkan warna hijau merata tanpa perubahan warna abnormal")
-    st.image("Assets/Hara Tercukupi.jpg", width=600)
+    st.image(r"C:\Users\Pongo\Documents\Kuliah\Tugas Akhir\Streamlit\Assets\Hara Tercukupi.jpg", width=600)
     st.write("")
     st.write("")
     st.write("")
 
     st.header("Karakteristik Visual Daun Defisiensi Nitrogen", divider="blue")
     st.write("Defisiensi nitrogen menyebabkan tanaman tumbuh kerdil dengan daun yang sempit. Gejala klorosis dimulai dari daun tua karena nitrogen diremobilisasi ke daun muda untuk pertumbuhan. Secara visual, tanaman tampak hijau pucat atau kuning (Marschner, 2012).")
-    st.image("Assets/Defisiensi N.jpg", width=600)
+    st.image(r"C:\Users\Pongo\Documents\Kuliah\Tugas Akhir\Streamlit\Assets\Defisiensi N.jpg", width=600)
     st.write("")
     st.write("")
     st.write("")
 
     st.header("Karakteristik Visual Daun Defisiensi Fosfor", divider="blue")
     st.write("Defisiensi fosfor menghambat pertumbuhan tanaman sehingga daun yang tumbuh relatif sedikit. Gejala visual dimulai dari daun tua, berupa klorosis antartulang daun dan nekrosis yang berkembang menyatu di sepanjang tepi daun (Yara Canada, 2018).")
-    st.image("Assets/Defisiensi P.jpg", width=600)
+    st.image(r"C:\Users\Pongo\Documents\Kuliah\Tugas Akhir\Streamlit\Assets\Defisiensi P.jpg", width=600)
     st.write("")
     st.write("")
     st.write("")
 
     st.header("Karakteristik Visual Daun Defisiensi Kalium", divider="blue")
     st.write("Defisiensi kalium menyebabkan klorosis antarvena yang dimulai pada daun tua, sementara vena utama tetap berwarna hijau untuk sementara. Klorosis kemudian berlanjut ke arah pangkal daun dan diikuti munculnya nekrosis di bagian tepi daun (Yara Canada, 2018).")
-    st.image("Assets/Defisiensi K.jpg", width=600)
+    st.image(r"C:\Users\Pongo\Documents\Kuliah\Tugas Akhir\Streamlit\Assets\Defisiensi K.jpg", width=600)
     st.write("")
     st.write("")
     st.write("")
@@ -174,7 +235,6 @@ with tab2:
     st.write("Marschner, P. (2012). Marschner's Mineral Nutrition of Higher Plants (Third Edition). Academic Press. DOI:10.1016/C2009-0-63043-9")
     st.write("Yara Canada. (2018). Nutrient Deficiencies in Soybean. Diakeses 17 Mei 2026, dari https://www.yaracanada.ca/crop-nutrition/soybean/nutrient-deficiencies/")
     
-
 with tab3:
     st.header("Tentang Model", divider="blue")
     st.subheader("Arsitektur dan Konfigurasi")
@@ -230,7 +290,6 @@ with tab3:
     st.image("Assets/confusion_matrix_normalized.png", width=600)
             
     
-
 
 
 
