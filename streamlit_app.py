@@ -28,7 +28,8 @@ div[data-testid="stTabs"] > div[data-baseweb="tab-list"] {
     width: fit-content;
     margin: 0 auto 20px auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.05);}
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
 
 div[data-testid="stTabs"] button[data-baseweb="tab"] {
     height: 42px;
@@ -38,16 +39,21 @@ div[data-testid="stTabs"] button[data-baseweb="tab"] {
     border: none;
     color: #333;
     font-weight: 500;
-    transition: all 0.2s ease;}
-    
+    transition: all 0.2s ease;
+}
+
 div[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] {
     background-color: #1B4332;
-    color: white;}
-    
+    color: white;
+}
+
 div[data-testid="stTabs"] div[data-baseweb="tab-highlight"] {
-    display: none;}       
+    display: none;
+}
+            
 </style>
 """, unsafe_allow_html=True)
+
 
 tab1, tab2, tab3 = st.tabs(["Prediksi", "Karakteristik Visual Defisiensi", "Tentang Model"])
 with tab1:
