@@ -16,6 +16,39 @@ st.set_page_config(
 
 st.title("SMART AGRICULTURE VISION SYSTEM")
 
+st.markdown("""
+<style>
+div[data-testid="stTabs"] > div[data-baseweb="tab-list"] {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    background-color: #f0f2f0;
+    padding: 6px;
+    border-radius: 12px;
+    width: fit-content;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);}
+
+div[data-testid="stTabs"] button[data-baseweb="tab"] {
+    height: 42px;
+    border-radius: 8px;
+    padding: 0 20px;
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.2s ease;}
+    
+div[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] {
+    background-color: #1B4332;
+    color: white;}
+    
+div[data-testid="stTabs"] div[data-baseweb="tab-highlight"] {
+    display: none;}       
+</style>
+""", unsafe_allow_html=True)
+
 tab1, tab2, tab3 = st.tabs(["Prediksi", "Karakteristik Visual Defisiensi", "Tentang Model"])
 with tab1:
     st.header("Unggah foto daun tanaman")
@@ -103,39 +136,37 @@ with tab1:
             st.write("Tidak ada objek yang terdeteksi.")
 
 with tab2:
-    col1, col2, col3 = st.columns([1, 1, 1])
-    with col2:
-        st.header("Karakteristik Visual Daun Hara Tercukupi", divider="blue")
-        st.write("Daun yang tercukupi haranya menampilkan warna hijau merata tanpa perubahan warna abnormal")
-        st.image("Assets/Hara Tercukupi.jpg", width=600)
-        st.write("")
-        st.write("")
-        st.write("")
+    st.header("Karakteristik Visual Daun Hara Tercukupi", divider="blue")
+    st.write("Daun yang tercukupi haranya menampilkan warna hijau merata tanpa perubahan warna abnormal")
+    st.image("Assets/Hara Tercukupi.jpg", width=600)
+    st.write("")
+    st.write("")
+    st.write("")
 
-        st.header("Karakteristik Visual Daun Defisiensi Nitrogen", divider="blue")
-        st.write("Defisiensi nitrogen menyebabkan tanaman tumbuh kerdil dengan daun yang sempit. Gejala klorosis dimulai dari daun tua karena nitrogen diremobilisasi ke daun muda untuk pertumbuhan. Secara visual, tanaman tampak hijau pucat atau kuning (Marschner, 2012).")
-        st.image("Assets/Defisiensi N.jpg", width=600)
-        st.write("")
-        st.write("")
-        st.write("")
+    st.header("Karakteristik Visual Daun Defisiensi Nitrogen", divider="blue")
+    st.write("Defisiensi nitrogen menyebabkan tanaman tumbuh kerdil dengan daun yang sempit. Gejala klorosis dimulai dari daun tua karena nitrogen diremobilisasi ke daun muda untuk pertumbuhan. Secara visual, tanaman tampak hijau pucat atau kuning (Marschner, 2012).")
+    st.image("Assets/Defisiensi N.jpg", width=600)
+    st.write("")
+    st.write("")
+    st.write("")
 
-        st.header("Karakteristik Visual Daun Defisiensi Fosfor", divider="blue")
-        st.write("Defisiensi fosfor menghambat pertumbuhan tanaman sehingga daun yang tumbuh relatif sedikit. Gejala visual dimulai dari daun tua, berupa klorosis antartulang daun dan nekrosis yang berkembang menyatu di sepanjang tepi daun (Yara Canada, 2018).")
-        st.image("Assets/Defisiensi P.jpg", width=600)
-        st.write("")
-        st.write("")
-        st.write("")
+    st.header("Karakteristik Visual Daun Defisiensi Fosfor", divider="blue")
+    st.write("Defisiensi fosfor menghambat pertumbuhan tanaman sehingga daun yang tumbuh relatif sedikit. Gejala visual dimulai dari daun tua, berupa klorosis antartulang daun dan nekrosis yang berkembang menyatu di sepanjang tepi daun (Yara Canada, 2018).")
+    st.image("Assets/Defisiensi P.jpg", width=600)
+    st.write("")
+    st.write("")
+    st.write("")
 
-        st.header("Karakteristik Visual Daun Defisiensi Kalium", divider="blue")
-        st.write("Defisiensi kalium menyebabkan klorosis antarvena yang dimulai pada daun tua, sementara vena utama tetap berwarna hijau untuk sementara. Klorosis kemudian berlanjut ke arah pangkal daun dan diikuti munculnya nekrosis di bagian tepi daun (Yara Canada, 2018).")
-        st.image("Assets/Defisiensi K.jpg", width=600)
-        st.write("")
-        st.write("")
-        st.write("")
+    st.header("Karakteristik Visual Daun Defisiensi Kalium", divider="blue")
+    st.write("Defisiensi kalium menyebabkan klorosis antarvena yang dimulai pada daun tua, sementara vena utama tetap berwarna hijau untuk sementara. Klorosis kemudian berlanjut ke arah pangkal daun dan diikuti munculnya nekrosis di bagian tepi daun (Yara Canada, 2018).")
+    st.image("Assets/Defisiensi K.jpg", width=600)
+    st.write("")
+    st.write("")
+    st.write("")
 
-        st.header("Referensi")
-        st.write("Marschner, P. (2012). Marschner's Mineral Nutrition of Higher Plants (Third Edition). Academic Press. DOI:10.1016/C2009-0-63043-9")
-        st.write("Yara Canada. (2018). Nutrient Deficiencies in Soybean. Diakeses 17 Mei 2026, dari https://www.yaracanada.ca/crop-nutrition/soybean/nutrient-deficiencies/")
+    st.header("Referensi")
+    st.write("Marschner, P. (2012). Marschner's Mineral Nutrition of Higher Plants (Third Edition). Academic Press. DOI:10.1016/C2009-0-63043-9")
+    st.write("Yara Canada. (2018). Nutrient Deficiencies in Soybean. Diakeses 17 Mei 2026, dari https://www.yaracanada.ca/crop-nutrition/soybean/nutrient-deficiencies/")
     
 
 with tab3:
