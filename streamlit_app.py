@@ -127,7 +127,7 @@ with tab1:
 
         with col1:
             st.subheader("Gambar Asli")
-            st.image(image, use_container_width=True)
+            st.image(image, width=True)
 
         with col2:
             st.subheader("Hasil Deteksi")
@@ -150,7 +150,7 @@ with tab1:
                 }
                 res_plotted = results[0].plot()
                 # Tampilkan hasil
-                st.image(res_plotted, channels="BGR", use_container_width=True)
+                st.image(res_plotted, channels="BGR", width=True)
 
         #Tampilkan Informasi Tambahan
         st.divider()
