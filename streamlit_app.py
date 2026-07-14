@@ -108,7 +108,9 @@ with tab1:
     # Pastikan file 'best.pt' ada di folder yang sama dengan file app.py ini
     @st.cache_resource 
     def load_model():
-        model_path = r"C:\Users\Pongo\Documents\Kuliah\Tugas Akhir\Streamlit\best.onnx"  # file di folder yang sama dengan streamlit_app.py
+        model_path = hf_hub_download(
+            repo_id="NewbieFinalBosss/SAVIS",
+            filename="best.onnx")
         model = YOLO(model_path)
         return model
     
