@@ -122,8 +122,7 @@ with tab1:
         image = Image.open(image_source).convert("RGB")
         # Buat dua kolom untuk membandingkan Original vs Hasil
         col1, col2 = st.columns(2)
-        #Buat slide ambang kepercayaan
-        conf_threshold = st.slider("Ambang kepercayaan", 0.0, 1.0, 0.838)
+        
 
         with col1:
             st.subheader("Gambar Asli")
